@@ -1,6 +1,6 @@
 """
 Flask-DotEnv
-----------
+------------
 
 The .env file support for Flask.
 """
