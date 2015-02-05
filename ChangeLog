@@ -1,0 +1,14 @@
+# ChangeLog for Flask-DotEnv
+
+  06 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+	tests/tests.py, tests/.env, +tests/.env.min, +ChangeLog:
+	New Release.
+  Remove os.environ dependency. Add config var alias support. Add verbose_mode.
+
+  29 Jan 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+	New Release.
+	Fix packaging issues. Don't use 0.0.1 :'(
+
+  28 Jan 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> +flask_dotenv.py,
+	+setup.py, +tests.py, +.env, +README.rst:
+	Initial release.

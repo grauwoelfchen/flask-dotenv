@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='Flask-DotEnv',
-    version='0.0.2',
+    version='0.0.3',
     url='https://github.com/grauwoelfchen/flask-dotenv/',
     license='BSD',
     author='Yasuhiro Asaka',
@@ -21,8 +21,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'Flask',
-        'python-dotenv'
+        'Flask'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
