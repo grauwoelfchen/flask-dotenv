@@ -8,7 +8,6 @@ FLask-DotEnv
 import os
 import re
 import warnings
-import dotenv
 
 
 class DotEnv(object):
