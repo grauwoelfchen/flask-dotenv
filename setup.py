@@ -2,7 +2,7 @@
 Flask-DotEnv
 ------------
 
-The .env file support for Flask.
+The .env file support for Flask without os.environ dependency.
 """
 
 from setuptools import setup
@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name='Flask-DotEnv',
-    version='0.0.3',
+    version='0.0.4',
     url='https://github.com/grauwoelfchen/flask-dotenv/',
     license='BSD',
     author='Yasuhiro Asaka',

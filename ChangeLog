@@ -1,5 +1,8 @@
 # ChangeLog for Flask-DotEnv
 
+  15 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py:
+	Fix unuse import :'(
+
   06 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
 	tests/tests.py, tests/.env, +tests/.env.min, +ChangeLog:
 	New Release.
