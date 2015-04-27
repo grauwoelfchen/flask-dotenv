@@ -5,7 +5,7 @@ Flask-DotEnv
 | From version ``0.0.3``, set config var without ``os.environ``.
 
 
-`Flask-DotEnv` will directly set (add, update and map as alias) variable frob `.env` file.
+`Flask-DotEnv` will directly set (add, update and map as alias) variable from `.env` file.
 
 
 Install
