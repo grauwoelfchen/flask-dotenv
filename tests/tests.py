@@ -33,6 +33,7 @@ class DotEnvTestCase(unittest.TestCase):
             'SECRET_KEY',
             'DEVELOPMENT_DATABASE_URL',
             'TEST_DATABASE_URL',
+            'DATABASE_URL',
             'BAR'
         ]
         for key in config_keys:
@@ -68,6 +69,12 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertEqual(
             'postgresql://postgres:postgres@localhost/test',
             self.app.config['TEST_DATABASE_URL'])
+
+    def test_loaded_value_can_contain_equal_signs(self):
+        self.env.init_app(self.app)
+        self.assertEqual(
+            'postgresql://postgres:postgres@localhost/production?sslmode=require',
+            self.app.config['DATABASE_URL'])
 
     def test_overwrite_an_existing_config_var(self):
         # flask has secret_key in default
