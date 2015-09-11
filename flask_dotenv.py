@@ -34,7 +34,7 @@ class DotEnv(object):
     def __import_vars(self, env_file):
         with open(env_file, "r") as f:
             for line in f:
-                key, val = line.strip().split('=')
+                key, val = line.strip().split('=', 1)
                 if not callable(val):
                     if self.verbose_mode:
                         if key in self.app.config:
