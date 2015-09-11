@@ -1,0 +1,12 @@
+language: python
+python:
+  - 3.3
+install: python setup.py -q install
+script:
+  - python tests/tests.py
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+    recipients:
+      - grauwoelfchen@gmail.com
