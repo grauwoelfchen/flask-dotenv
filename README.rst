@@ -1,6 +1,9 @@
 Flask-DotEnv
 ------------
 
+.. image:: https://travis-ci.org/grauwoelfchen/flask-dotenv.svg?branch=master
+    :target: https://travis-ci.org/grauwoelfchen/flask-dotenv
+
 | Adds support for .env file to flask applications.
 | From version ``0.0.3``, set config var without ``os.environ``.
 
