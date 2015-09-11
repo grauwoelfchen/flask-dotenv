@@ -1,5 +1,10 @@
 # ChangeLog for Flask-DotEnv
 
+  11 Sep 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> README,
+	flask_dotenv.py:
+	Fix typo in README (thanks lozadaOmr)
+	Add equal sign support in value (thanks mawuli)
+
   15 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py:
 	Fix unuse import :'(
 
