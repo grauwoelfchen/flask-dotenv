@@ -4,11 +4,15 @@ Flask-DotEnv
 .. image:: https://travis-ci.org/grauwoelfchen/flask-dotenv.svg?branch=master
     :target: https://travis-ci.org/grauwoelfchen/flask-dotenv
 
+.. image:: https://img.shields.io/pypi/v/Flask-Dotenv.svg
+    :target: https://pypi.python.org/pypi/Flask-Dotenv/
+
 | Adds support for .env file to flask applications.
 | From version ``0.0.3``, set config var without ``os.environ``.
+|
 
 
-`Flask-DotEnv` will directly set (add, update and map as alias) variable from `.env` file.
+`Flask-DotEnv` will directly set (add, update and map as alias) variable from ``.env`` file.
 
 
 Install
@@ -23,7 +27,9 @@ Install
 Usage
 -----
 
-Basic usage.
+**********
+DotEnv
+**********
 
 ::
 
@@ -40,7 +46,7 @@ As factory pattern.
     env = DotEnv()
     env.init_app(app)
 
-| This env module may be usefull in your Config class.
+| This ``env`` module may be usefull in your Config class.
 | e.g.
 
 ::
@@ -54,15 +60,24 @@ As factory pattern.
             env = DotEnv()
             env.init_app(app)
 
-            # alias is optional
-            # this will set var like a `DEVELOPMENT_DATABASE_URL` as `SQLALCHEMY_DATABASE_URI`
-            prefix = self.__name__.replace('Config', '').upper()
-            env.alias(maps={
-                prefix + '_DATABASE_URL': 'SQLALCHEMY_DATABASE_URI'
-            })
+Then in your app:
 
+::
 
-You can pass .env file path as second argument of ``init_app()``.
+    from config import config
+
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+
+See also:
+
+.. _flask.Config.from_object: http://flask.pocoo.org/docs/0.10/api/#flask.Config.from_object
+
+**********
+Arguments
+**********
+
+You can pass ``.env`` file path as second argument of ``init_app()``.
 
 ::
 
@@ -71,8 +86,7 @@ You can pass .env file path as second argument of ``init_app()``.
 | The second argument (``env_file``) is optional. default is ``os.path.join(os.getcwd(), '.env')``.
 | The third argument (``verbose_mode``) is also optional. default ``False``.
 
-
-| If ``verbose_mode`` is True, then server outputs which vars will be set.
+| If ``verbose_mode`` is True, then server outputs nice log message which vars will be set.
 | like this:
 
 ::
@@ -82,8 +96,11 @@ You can pass .env file path as second argument of ``init_app()``.
     * Mapping a specified var as a alias: DEVELOPMENT_DATABASE_URL => SQLALCHEMY_DATABASE_URI
     ...
 
+**********
+Alias
+**********
 
-`alias()` method takes a dict argment.
+``alias()`` method takes a dict argment.
 
 ::
 
@@ -92,6 +109,34 @@ You can pass .env file path as second argument of ``init_app()``.
       'TEST_HOST': 'HOST'
     })
 
+This is example usage of ``alias``:
+
+::
+
+    class Config:
+        SECRET_KEY = ":'("
+        ...
+
+        @classmethod
+        def init_app(self, app)
+            env = DotEnv()
+            env.init_app(app)
+
+            # this will set var like a `DEVELOPMENT_DATABASE_URL` as `SQLALCHEMY_DATABASE_URI`
+            prefix = self.__name__.replace('Config', '').upper()
+            env.alias(maps={
+                prefix + '_DATABASE_URL': 'SQLALCHEMY_DATABASE_URI'
+            })
+
+
+    class DevelopmentConfig(Config):
+        DEBUG = True
+        SQLALCHEMY_DATABASE_URI = None
+
+
+    config = {
+        'development': DevelopmentConfig
+    }
 
 
 Development
