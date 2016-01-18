@@ -146,7 +146,7 @@ Run unittest.
 
 ::
 
-    $ python tests/tests.py
+    $ python setup.py test
 
 
 

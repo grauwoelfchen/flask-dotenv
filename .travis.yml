@@ -1,9 +1,12 @@
 language: python
 python:
-  - 3.3
+  - '3.2'
+  - '3.3'
+  - '3.4'
+  - '3.5'
 install: python setup.py -q install
 script:
-  - python tests/tests.py
+  - python setup.py test
 notifications:
   email:
     on_success: change
