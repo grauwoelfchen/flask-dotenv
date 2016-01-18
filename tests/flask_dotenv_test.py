@@ -10,10 +10,14 @@ import flask_dotenv as dotenv
 @contextlib.contextmanager
 def capture():
     import sys
-    import cStringIO
+    try:
+        # python 2
+        from cStringIO import StringIO
+    except ImportError:
+        from io import StringIO
     oldout, olderr = sys.stdout, sys.stderr
     try:
-        out = [cStringIO.StringIO(), cStringIO.StringIO()]
+        out = [StringIO(), StringIO()]
         sys.stdout, sys.stderr = out
         yield out
     finally:
