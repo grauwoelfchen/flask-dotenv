@@ -23,7 +23,7 @@ setup(
     install_requires=[
         'Flask'
     ],
-    test_suite='tests/tests.py',
+    test_suite='tests',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
