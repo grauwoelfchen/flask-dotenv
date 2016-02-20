@@ -1,5 +1,12 @@
 # ChangeLog for Flask-DotEnv
 
+  20 Feb 2016; Ryan Harvey <ryan.b.harvey@gmail.com> README, flask_dotenv.py,
+    tests/.env, tests/tests.py, ChangeLog:
+    Added abstract syntax tree literal eval for type casting of config values.
+    Added tests to validate type casting.
+    Updated README to include type casting information.
+    Updated ChangeLog.
+
   11 Sep 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> README,
 	flask_dotenv.py:
 	Fix typo in README (thanks lozadaOmr)

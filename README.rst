@@ -12,7 +12,8 @@ Flask-DotEnv
 |
 
 
-`Flask-DotEnv` will directly set (add, update and map as alias) variable from ``.env`` file.
+`Flask-DotEnv` will directly set (add, update and map as alias) variable from ``.env`` file,
+and cast to Python native types as appropriate.
 
 
 Install

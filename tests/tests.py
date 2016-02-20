@@ -3,7 +3,8 @@ import contextlib
 import unittest
 import warnings
 import flask
-
+import sys
+sys.path.append(os.getcwd())
 import flask_dotenv as dotenv
 
 
@@ -34,7 +35,9 @@ class DotEnvTestCase(unittest.TestCase):
             'DEVELOPMENT_DATABASE_URL',
             'TEST_DATABASE_URL',
             'DATABASE_URL',
-            'BAR'
+            'BAR',
+            'FEATURES',
+            'NUMERIC'
         ]
         for key in config_keys:
             if key in self.app.config:
@@ -76,6 +79,14 @@ class DotEnvTestCase(unittest.TestCase):
             'postgresql://postgres:postgres@localhost/production?sslmode=require',
             self.app.config['DATABASE_URL'])
 
+    def test_loaded_value_is_evaluated_as_abstract_syntax_grammar_object(self):
+        self.env.init_app(self.app)
+        self.assertEqual({'DotEnv': True}, self.app.config['FEATURES'])
+
+    def test_loaded_value_is_evaluated_as_abstract_syntax_grammar_numeric(self):
+        self.env.init_app(self.app)
+        self.assertEqual(15, self.app.config['NUMERIC'])
+
     def test_overwrite_an_existing_config_var(self):
         # flask has secret_key in default
         self.assertEqual(None, self.app.config['SECRET_KEY'])
@@ -113,8 +124,12 @@ class DotEnvTestCase(unittest.TestCase):
             self.env._DotEnv__import_vars(os.path.join(root_dir, '.env.min'))
         # flask has secret_key in default
         self.assertIn(
-            ' * Setting an entirely new config var: BAR\n'
-            ' * Overwriting an existing config var: SECRET_KEY\n',
+            " * BAR: Couldn't evaluate syntax of value on .env line:\n"
+            "     BAR=true\n"
+            "   Importing as string value.\n"
+            " * Setting an entirely new config var: BAR\n"
+            " * SECRET_KEY: value ':)' of type <class 'str'> cast to <class 'str'>\n"
+            " * Overwriting an existing config var: SECRET_KEY\n",
             out
         )
 
