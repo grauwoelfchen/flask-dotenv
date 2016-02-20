@@ -72,7 +72,7 @@ Then in your app:
 
 See also:
 
-.. _flask.Config.from_object: http://flask.pocoo.org/docs/0.10/api/#flask.Config.from_object
+`flask.Config.from_object <http://flask.pocoo.org/docs/0.10/api/#flask.Config.from_object>`_ (API — Flask Documentation)
 
 **********
 Arguments
@@ -147,7 +147,7 @@ Run unittest.
 
 ::
 
-    $ python tests/tests.py
+    $ python setup.py test
 
 
 

@@ -11,7 +11,11 @@ import flask_dotenv as dotenv
 @contextlib.contextmanager
 def capture():
     import sys
-    from io import StringIO
+    try:
+        # python 2
+        from cStringIO import StringIO
+    except ImportError:
+        from io import StringIO
     oldout, olderr = sys.stdout, sys.stderr
     try:
         out = [StringIO(), StringIO()]
@@ -64,19 +68,19 @@ class DotEnvTestCase(unittest.TestCase):
     def test_loaded_value_dose_not_contain_double_quote(self):
         self.env.init_app(self.app)
         self.assertEqual(
-            'postgresql://postgres:postgres@localhost/development',
+            'postgresql://user:password@localhost/development',
             self.app.config['DEVELOPMENT_DATABASE_URL'])
 
     def test_loaded_value_dose_not_contain_single_quote(self):
         self.env.init_app(self.app)
         self.assertEqual(
-            'postgresql://postgres:postgres@localhost/test',
+            'postgresql://user:password@localhost/test',
             self.app.config['TEST_DATABASE_URL'])
 
     def test_loaded_value_can_contain_equal_signs(self):
         self.env.init_app(self.app)
         self.assertEqual(
-            'postgresql://postgres:postgres@localhost/production?sslmode=require',
+            'postgresql://user:password@localhost/production?sslmode=require',
             self.app.config['DATABASE_URL'])
 
     def test_loaded_value_is_evaluated_as_abstract_syntax_grammar_object(self):
@@ -99,7 +103,7 @@ class DotEnvTestCase(unittest.TestCase):
             'TEST_DATABASE_URL': 'SQLALCHEMY_DATABASE_URL'
         })
         self.assertEqual(
-            'postgresql://postgres:postgres@localhost/test',
+            'postgresql://user:password@localhost/test',
             self.app.config['SQLALCHEMY_DATABASE_URL']
         )
 
@@ -112,6 +116,11 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertFalse(self.env.verbose_mode)
 
     def test_import_vars_raises_in_env_file_does_not_exist(self):
+        try:
+            FileNotFoundError
+        except NameError:
+            # python 2
+            FileNotFoundError = IOError
         with self.assertRaises(FileNotFoundError) as e:
             self.env._DotEnv__import_vars('/does/not/exist/.env')
         self.assertEqual(e.exception.strerror, 'No such file or directory')
