@@ -4,7 +4,7 @@ import unittest
 import warnings
 import flask
 import sys
-sys.path.append(os.getcwd())
+
 import flask_dotenv as dotenv
 
 
@@ -125,7 +125,7 @@ class DotEnvTestCase(unittest.TestCase):
             self.env._DotEnv__import_vars('/does/not/exist/.env')
         self.assertEqual(e.exception.strerror, 'No such file or directory')
 
-    def test_import_vars_will_output_logs_in_vobose_mode(self):
+    def test_import_vars_will_output_logs_in_verbose_mode(self):
         with capture() as out:
             self.env.app = self.app
             self.env.verbose_mode = True
@@ -137,8 +137,9 @@ class DotEnvTestCase(unittest.TestCase):
             "     BAR=true\n"
             "   Importing as string value.\n"
             " * Setting an entirely new config var: BAR\n"
-            " * SECRET_KEY: value ':)' of type <class 'str'> cast to <class 'str'>\n"
-            " * Overwriting an existing config var: SECRET_KEY\n",
+            " * SECRET_KEY: value ':)' of type <{0} 'str'> cast to <{0} 'str'>\n"
+            " * Overwriting an existing config var: SECRET_KEY"
+            "\n".format("type" if sys.version_info[0] < 3 else "class"),
             out
         )
 
