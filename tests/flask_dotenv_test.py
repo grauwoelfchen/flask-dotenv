@@ -41,11 +41,13 @@ class DotEnvTestCase(unittest.TestCase):
             'DATABASE_URL',
             'BAR',
             'FEATURES',
-            'NUMERIC'
+            'PORT_NUMBER'
         ]
         for key in config_keys:
             if key in self.app.config:
                 del self.app.config[key]
+
+    # behaviors
 
     def test_warning_if_env_file_is_missing(self):
         with warnings.catch_warnings(record=True) as w:
@@ -83,29 +85,13 @@ class DotEnvTestCase(unittest.TestCase):
             'postgresql://user:password@localhost/production?sslmode=require',
             self.app.config['DATABASE_URL'])
 
-    def test_loaded_value_is_evaluated_as_abstract_syntax_grammar_object(self):
-        self.env.init_app(self.app)
-        self.assertEqual({'DotEnv': True}, self.app.config['FEATURES'])
-
-    def test_loaded_value_is_evaluated_as_abstract_syntax_grammar_numeric(self):
-        self.env.init_app(self.app)
-        self.assertEqual(15, self.app.config['NUMERIC'])
-
     def test_overwrite_an_existing_config_var(self):
         # flask has secret_key in default
         self.assertEqual(None, self.app.config['SECRET_KEY'])
         self.env.init_app(self.app)
         self.assertEqual(':)', self.app.config['SECRET_KEY'])
 
-    def test_alias_sets_it_as_same_value(self):
-        self.env.init_app(self.app)
-        self.env.alias(maps={
-            'TEST_DATABASE_URL': 'SQLALCHEMY_DATABASE_URL'
-        })
-        self.assertEqual(
-            'postgresql://user:password@localhost/test',
-            self.app.config['SQLALCHEMY_DATABASE_URL']
-        )
+    # methods
 
     def test_init_app_assigns_app(self):
         self.env.init_app(self.app)
@@ -125,21 +111,49 @@ class DotEnvTestCase(unittest.TestCase):
             self.env._DotEnv__import_vars('/does/not/exist/.env')
         self.assertEqual(e.exception.strerror, 'No such file or directory')
 
+    def test_alias_sets_it_as_same_value(self):
+        self.env.init_app(self.app)
+        self.env.alias(maps={
+            'TEST_DATABASE_URL': 'SQLALCHEMY_DATABASE_URL'
+        })
+        self.assertEqual(
+            'postgresql://user:password@localhost/test',
+            self.app.config['SQLALCHEMY_DATABASE_URL']
+        )
+
+    def test_eval_var_as_abstract_syntax_tree_dict_literal(self):
+        self.env.init_app(self.app)
+        self.env.eval(keys={'FEATURES': dict})
+        self.assertEqual({'DotEnv': True}, self.app.config['FEATURES'])
+
+    def test_eval_var_as_abstract_syntax_tree_numeric_literal(self):
+        self.env.init_app(self.app)
+        self.env.eval(keys={'PORT_NUMBER': int})
+        self.assertEqual(15, self.app.config['PORT_NUMBER'])
+
+    # logging
+
     def test_import_vars_will_output_logs_in_verbose_mode(self):
         with capture() as out:
             self.env.app = self.app
             self.env.verbose_mode = True
             root_dir = os.path.dirname(os.path.abspath(__file__))
             self.env._DotEnv__import_vars(os.path.join(root_dir, '.env.min'))
-        # flask has secret_key in default
         self.assertIn(
-            " * BAR: Couldn't evaluate syntax of value on .env line:\n"
-            "     BAR=true\n"
-            "   Importing as string value.\n"
             " * Setting an entirely new config var: BAR\n"
-            " * SECRET_KEY: value ':)' of type <{0} 'str'> cast to <{0} 'str'>\n"
             " * Overwriting an existing config var: SECRET_KEY"
             "\n".format("type" if sys.version_info[0] < 3 else "class"),
+            out
+        )
+
+    def test_eval_will_output_log_in_vobose_mode(self):
+        with capture() as out:
+            self.env.init_app(self.app)
+            self.env.verbose_mode = True
+            self.env.eval(keys={'FEATURES': dict})
+        self.assertIn(
+            ' * Casting a specified var as literal:'
+            ' FEATURES => <class \'dict\'>\n',
             out
         )
 
@@ -152,7 +166,7 @@ class DotEnvTestCase(unittest.TestCase):
             })
         self.assertIn(
             ' * Mapping a specified var as a alias:'
-            ' SQLALCHEMY_DATABASE_URL => TEST_DATABASE_URL\n',
+            ' SQLALCHEMY_DATABASE_URL -> TEST_DATABASE_URL\n',
             out
         )
 

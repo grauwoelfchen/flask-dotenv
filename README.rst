@@ -12,8 +12,13 @@ Flask-DotEnv
 |
 
 
-`Flask-DotEnv` will directly set (add, update and map as alias) variable from ``.env`` file,
+`Flask-DotEnv` will directly set (add, update, map as alias and eval as literal) variable from ``.env`` file,
 and cast to Python native types as appropriate.
+
+(optional)
+
+* ``alias()`` makes alias var
+* ``eval()`` evaluate var to literal (via ast)
 
 
 Install
@@ -94,7 +99,8 @@ You can pass ``.env`` file path as second argument of ``init_app()``.
 
     * Overwriting an existing config var: SECRET_KEY
     * Setting an entirely new config var: DEVELOPMENT_DATABASE_URL
-    * Mapping a specified var as a alias: DEVELOPMENT_DATABASE_URL => SQLALCHEMY_DATABASE_URI
+    * Casting a specified var as literal: MAIL_PORT => <class 'int'>
+    * Mapping a specified var as a alias: DEVELOPMENT_DATABASE_URL -> SQLALCHEMY_DATABASE_URI
     ...
 
 **********
@@ -138,6 +144,38 @@ This is example usage of ``alias``:
     config = {
         'development': DevelopmentConfig
     }
+
+
+**********
+Eval
+**********
+
+``eval()`` method takes a dict argment.
+
+::
+
+    env.eval(keys={
+      'MAIL_PORT': int,
+      'SETTINGS': dict
+    })
+
+This is example usage of ``eval``:
+
+::
+
+    class Config:
+        SECRET_KEY = ":'("
+        ...
+
+        @classmethod
+        def init_app(self, app)
+            env = DotEnv()
+            env.init_app(app)
+
+            # this will be evaluated via ast.literal_eval
+            env.eval(keys={
+                MAIL_PORT: int
+            })
 
 
 Development
