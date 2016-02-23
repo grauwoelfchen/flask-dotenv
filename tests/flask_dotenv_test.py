@@ -51,9 +51,9 @@ class DotEnvTestCase(unittest.TestCase):
 
     def test_warning_if_env_file_is_missing(self):
         with warnings.catch_warnings(record=True) as w:
-            self.env.init_app(self.app, "/does/not/exist/.env")
+            self.env.init_app(self.app, '/does/not/exist/.env')
             self.assertEqual(
-                "can't read /does/not/exist/.env - it doesn't exist",
+                'can\'t read /does/not/exist/.env - it doesn\'t exist',
                 str(w[0].message)
             )
         self.assertFalse('FOO' in self.app.config)
@@ -140,9 +140,8 @@ class DotEnvTestCase(unittest.TestCase):
             root_dir = os.path.dirname(os.path.abspath(__file__))
             self.env._DotEnv__import_vars(os.path.join(root_dir, '.env.min'))
         self.assertIn(
-            " * Setting an entirely new config var: BAR\n"
-            " * Overwriting an existing config var: SECRET_KEY"
-            "\n".format("type" if sys.version_info[0] < 3 else "class"),
+            ' * Setting an entirely new config var: BAR\n'
+            ' * Overwriting an existing config var: SECRET_KEY\n',
             out
         )
 
@@ -151,9 +150,11 @@ class DotEnvTestCase(unittest.TestCase):
             self.env.init_app(self.app)
             self.env.verbose_mode = True
             self.env.eval(keys={'FEATURES': dict})
+
         self.assertIn(
             ' * Casting a specified var as literal:'
-            ' FEATURES => <class \'dict\'>\n',
+            ' FEATURES => <{0} \'dict\'>\n'
+            .format('type' if sys.version_info[0] < 3 else 'class'),
             out
         )
 
