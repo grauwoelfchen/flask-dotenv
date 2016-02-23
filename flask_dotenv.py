@@ -5,6 +5,8 @@ FLask-DotEnv
 :license: BSD 2-Clause License
 """
 
+from __future__ import absolute_import
+import ast
 import os
 import re
 import warnings
@@ -22,8 +24,6 @@ class DotEnv(object):
     def init_app(self, app, env_file=None, verbose_mode=False):
         if self.app is None:
             self.app = app
-        self.verbose_mode = verbose_mode
-
         if env_file is None:
             env_file = os.path.join(os.getcwd(), ".env")
         if not os.path.exists(env_file):
@@ -34,15 +34,28 @@ class DotEnv(object):
     def __import_vars(self, env_file):
         with open(env_file, "r") as f:
             for line in f:
-                key, val = line.strip().split('=', 1)
-                if not callable(val):
+                try:
+                    key, value = line.strip().split('=', 1)
+                except ValueError:  # Take care of blank or comment lines
+                    pass
+                try:
+                    val = ast.literal_eval(value)
                     if self.verbose_mode:
-                        if key in self.app.config:
-                            msg = " * Overwriting an existing config var: {0}"
-                        else:
-                            msg = " * Setting an entirely new config var: {0}"
-                        print(msg.format(key))
-                    self.app.config[key] = re.sub(r"\A[\"']|[\"']\Z", "", val)
+                        print(" * {0}: value {1} of type {2} cast to {3}".format(key, value, type(value), type(val)))
+                except (ValueError, SyntaxError):
+                    if self.verbose_mode:
+                        print(" * {0}: Couldn't evaluate syntax of value on .env line:\n     {1}\n"
+                              "   Importing as string value.".format(key, line.strip()))
+                    val = re.sub(r"\A[\"']|[\"']\Z", "", value)
+                finally:
+                    if not callable(val):
+                        if self.verbose_mode:
+                            if key in self.app.config:
+                                msg = " * Overwriting an existing config var: {0}"
+                            else:
+                                msg = " * Setting an entirely new config var: {0}"
+                            print(msg.format(key))
+                        self.app.config[key] = val
 
     def alias(self, maps):
         for k, v in maps.items():
