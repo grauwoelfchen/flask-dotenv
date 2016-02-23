@@ -24,6 +24,8 @@ class DotEnv(object):
     def init_app(self, app, env_file=None, verbose_mode=False):
         if self.app is None:
             self.app = app
+        self.verbose_mode = verbose_mode
+
         if env_file is None:
             env_file = os.path.join(os.getcwd(), ".env")
         if not os.path.exists(env_file):
