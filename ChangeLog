@@ -1,5 +1,8 @@
 # ChangeLog for Flask-DotEnv
 
+  07 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+	New Release. 0.0.6
+
   20 Feb 2016; Ryan Harvey <ryan.b.harvey@gmail.com> README, flask_dotenv.py,
     tests/.env, tests/tests.py, ChangeLog:
     Added abstract syntax tree literal eval for type casting of config values.
