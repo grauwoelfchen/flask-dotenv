@@ -38,6 +38,7 @@ class DotEnv(object):
             for line in f:
                 try:
                     key, val = line.strip().split('=', 1)
+                    key = key.replace('export ', '')
                 except ValueError:  # Take care of blank or comment lines
                     pass
                 finally:

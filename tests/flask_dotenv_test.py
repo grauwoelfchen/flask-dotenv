@@ -67,17 +67,23 @@ class DotEnvTestCase(unittest.TestCase):
         self.env.init_app(self.app, os.path.join(root_dir, '.env.min'))
         self.assertTrue('BAR' in self.app.config)
 
-    def test_loaded_value_dose_not_contain_double_quote(self):
+    def test_loaded_value_does_not_contain_double_quote(self):
         self.env.init_app(self.app)
         self.assertEqual(
             'postgresql://user:password@localhost/development',
             self.app.config['DEVELOPMENT_DATABASE_URL'])
 
-    def test_loaded_value_dose_not_contain_single_quote(self):
+    def test_loaded_value_does_not_contain_single_quote(self):
         self.env.init_app(self.app)
         self.assertEqual(
             'postgresql://user:password@localhost/test',
             self.app.config['TEST_DATABASE_URL'])
+
+    def test_loaded_value_does_not_contain_export(self):
+        self.env.init_app(self.app)
+        self.assertEqual(
+            'prod',
+            self.app.config['ENV'])
 
     def test_loaded_value_can_contain_equal_signs(self):
         self.env.init_app(self.app)
