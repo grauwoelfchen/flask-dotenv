@@ -178,6 +178,22 @@ This is example usage of ``eval``:
             })
 
 
+
+.env File
+-----------
+
+Following all lines are valid.
+
+::
+
+    SECRET_KEY="123"
+    USERNAME=john
+    DATABASE_URL='postgresql://user:password@localhost/production?sslmode=require'
+    FEATURES={'DotEnv': True}
+    export ENV="production"
+
+
+
 Development
 -----------
 

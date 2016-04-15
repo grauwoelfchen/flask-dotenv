@@ -1,5 +1,9 @@
 # ChangeLog for Flask-DotEnv
 
+  13 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+	tests/flask_dotenv_test.py, tests/.env:
+	Add export style .env support (thanks diegoponciano)
+
   07 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
 	New Release. 0.0.6
 
