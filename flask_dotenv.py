@@ -41,7 +41,7 @@ class DotEnv(object):
                     key = key.lstrip('export ')
                 except ValueError:  # Take care of blank or comment lines
                     pass
-                finally:
+                else:
                     if not callable(val):
                         if self.verbose_mode:
                             if key in self.app.config:
