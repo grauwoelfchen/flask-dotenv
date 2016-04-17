@@ -1,5 +1,11 @@
 # ChangeLog for Flask-DotEnv
 
+  17 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+	tests/.env, README:
+	Update README about .env file syntax
+	Improve export style line support (thanks diegoponciano).
+	Skip comment and blank lines (thanks diegoponciano).
+
   15 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
 	New Release. 0.0.7
 

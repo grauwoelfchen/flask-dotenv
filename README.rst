@@ -190,6 +190,8 @@ Following all lines are valid.
     USERNAME=john
     DATABASE_URL='postgresql://user:password@localhost/production?sslmode=require'
     FEATURES={'DotEnv': True}
+    # comment and blank lines are also supported
+
     export ENV="production"
 
 
