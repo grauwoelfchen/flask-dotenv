@@ -38,10 +38,10 @@ class DotEnv(object):
             for line in f:
                 try:
                     key, val = line.strip().split('=', 1)
-                    key = key.replace('export ', '')
+                    key = key.lstrip('export ')
                 except ValueError:  # Take care of blank or comment lines
                     pass
-                finally:
+                else:
                     if not callable(val):
                         if self.verbose_mode:
                             if key in self.app.config:
