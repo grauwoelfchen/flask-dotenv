@@ -37,8 +37,10 @@ class DotEnv(object):
         with open(env_file, "r") as f:
             for line in f:
                 try:
+                    line = line.lstrip()
+                    if line.startswith('export'):
+                        line = line.replace('export', '',  count=1)
                     key, val = line.strip().split('=', 1)
-                    key = key.lstrip('export ')
                 except ValueError:  # Take care of blank or comment lines
                     pass
                 else:
