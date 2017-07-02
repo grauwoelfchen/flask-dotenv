@@ -39,7 +39,7 @@ class DotEnv(object):
                 try:
                     line = line.lstrip()
                     if line.startswith('export'):
-                        line = line.replace('export', '',  count=1)
+                        line = line.replace('export', '', 1)
                     key, val = line.strip().split('=', 1)
                 except ValueError:  # Take care of blank or comment lines
                     pass
