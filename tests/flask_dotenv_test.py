@@ -84,6 +84,11 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertEqual(
             'prod',
             self.app.config['ENV'])
+        
+        # lowercase
+        self.assertEqual(
+            'stag',
+            self.app.config['env'])
 
     def test_loaded_value_can_contain_equal_signs(self):
         self.env.init_app(self.app)
