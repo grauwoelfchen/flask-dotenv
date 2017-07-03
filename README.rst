@@ -7,7 +7,7 @@ Flask-DotEnv
 .. image:: https://img.shields.io/pypi/v/Flask-Dotenv.svg
     :target: https://pypi.python.org/pypi/Flask-Dotenv/
 
-| Adds support for .env file to flask applications.
+| Adds support for .env file to flask style cofig class for applications. 
 | From version ``0.0.3``, set config var without ``os.environ``.
 |
 
