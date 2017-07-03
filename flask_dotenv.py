@@ -1,7 +1,7 @@
 """
 FLask-DotEnv
 
-:copyright: (c) 2015 by Yasuhiro Asaka.
+:copyright: (c) 2015-2017 by Yasuhiro Asaka.
 :license: BSD 2-Clause License
 """
 
@@ -22,6 +22,7 @@ class DotEnv(object):
             self.init_app(app)
 
     def init_app(self, app, env_file=None, verbose_mode=False):
+        """Imports .env file."""
         if self.app is None:
             self.app = app
         self.verbose_mode = verbose_mode
@@ -34,7 +35,8 @@ class DotEnv(object):
             self.__import_vars(env_file)
 
     def __import_vars(self, env_file):
-        with open(env_file, "r") as f:
+        """Actual importing function."""
+        with open(env_file, "r") as f:  # pylint: disable=invalid-name
             for line in f:
                 try:
                     line = line.lstrip()
@@ -64,11 +66,11 @@ class DotEnv(object):
 
             >>> env.eval({MAIL_PORT: int})
         """
-        for k, v in keys.items():
+        for k, v in keys.items():  # pylint: disable=invalid-name
             if k in self.app.config:
                 try:
                     val = ast.literal_eval(self.app.config[k])
-                    if type(val) == v:
+                    if isinstance(val, v):
                         if self.verbose_mode:
                             print(
                                 " * Casting a specified var as literal:"
@@ -93,7 +95,7 @@ class DotEnv(object):
               'TEST_HOST': 'HOST'
             })
         """
-        for k, v in maps.items():
+        for k, v in maps.items():  # pylint: disable=invalid-name
             if self.verbose_mode:
                 print(
                     " * Mapping a specified var as a alias:"
