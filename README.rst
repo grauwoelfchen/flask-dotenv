@@ -193,6 +193,7 @@ Following all lines are valid.
     # comment and blank lines are also supported
 
     export ENV="production"
+    export env="staging"
 
 
 
