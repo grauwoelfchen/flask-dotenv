@@ -1,16 +1,20 @@
+# pylint: disable=missing-docstring
+"""Unit test for flask_dotenv.py.
+"""
 import os
 import contextlib
+import sys
 import unittest
 import warnings
+
 import flask
-import sys
 
 import flask_dotenv as dotenv
 
 
 @contextlib.contextmanager
 def capture():
-    import sys
+    """Captures the output to stdout."""
     try:
         # python 2
         from cStringIO import StringIO
@@ -28,6 +32,7 @@ def capture():
 
 
 class DotEnvTestCase(unittest.TestCase):
+    # pylint: disable=protected-access,no-member,invalid-name
     def setUp(self):
         self.app = flask.Flask(__name__)
         self.env = dotenv.DotEnv()
@@ -84,7 +89,7 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertEqual(
             'prod',
             self.app.config['ENV'])
-        
+
         # lowercase
         self.assertEqual(
             'stag',
@@ -113,10 +118,12 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertFalse(self.env.verbose_mode)
 
     def test_import_vars_raises_in_env_file_does_not_exist(self):
+        # pylint: disable=invalid-name
         try:
             FileNotFoundError
         except NameError:
             # python 2
+            # pylint: disable=redefined-builtin
             FileNotFoundError = IOError
         with self.assertRaises(FileNotFoundError) as e:
             self.env._DotEnv__import_vars('/does/not/exist/.env')
