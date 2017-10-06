@@ -13,4 +13,4 @@ notifications:
     on_success: change
     on_failure: always
     recipients:
-      - grauwoelfchen@gmail.com
+      - yasuhiro.asaka@grauwoelfchen.net
