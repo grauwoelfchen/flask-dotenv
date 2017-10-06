@@ -21,6 +21,17 @@ and cast to Python native types as appropriate.
 * ``eval()`` evaluate var to literal (via ast)
 
 
+Repositories
+------------
+
+My main repository is on GitLab (`.com`).  
+But, also pull request on GitHub is welcome :-D
+
+https://gitlab.com/grauwoelfchen/flask-dotenv.git (main)
+https://github.com/grauwoelfchen/flask-dotenv.git
+
+
+
 Install
 -------
 
