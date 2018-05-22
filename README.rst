@@ -63,7 +63,7 @@ As factory pattern.
     env = DotEnv()
     env.init_app(app)
 
-| This ``env`` module may be usefull in your Config class.
+| This ``env`` module may be useful in your Config class.
 | e.g.
 
 ::
@@ -118,7 +118,7 @@ You can pass ``.env`` file path as second argument of ``init_app()``.
 Alias
 **********
 
-``alias()`` method takes a dict argment.
+``alias()`` method takes a dict argument.
 
 ::
 
@@ -161,7 +161,7 @@ This is example usage of ``alias``:
 Eval
 **********
 
-``eval()`` method takes a dict argment.
+``eval()`` method takes a dict argument.
 
 ::
 
