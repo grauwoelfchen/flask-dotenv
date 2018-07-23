@@ -1,5 +1,8 @@
 # ChangeLog for Flask-DotEnv
 
+  23 Jul 2018; Yasuhiro Asaka <grauwoelfchen@gmail.com> README.rst:
+	Fix typo in README (thanks spankie)
+
   03 Jun 2017; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
 	tests/.env, flask_dotenv_test.py:
 	Fix issue for lowercase variable name that matches `export` (thanks oriontvv)
