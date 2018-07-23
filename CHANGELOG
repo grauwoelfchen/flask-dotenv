@@ -1,30 +1,30 @@
 # ChangeLog for Flask-DotEnv
 
-  23 Jul 2018; Yasuhiro Asaka <grauwoelfchen@gmail.com> README.rst:
+  23 Jul 2018; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README.rst:
 	Fix typo in README (thanks spankie)
 
-  03 Jun 2017; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+  03 Jun 2017; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> flask_dotenv.py,
 	tests/.env, flask_dotenv_test.py:
 	Fix issue for lowercase variable name that matches `export` (thanks oriontvv)
 	New Release. 0.1.1
 
-  17 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+  17 Apr 2016; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> setup.py:
 	New Release. 0.1.0 as (development status 5 - production/stable)
 
-  17 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+  17 Apr 2016; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> flask_dotenv.py,
 	tests/.env, README:
 	Update README about .env file syntax
 	Improve export style line support (thanks diegoponciano).
 	Skip comment and blank lines (thanks diegoponciano).
 
-  15 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+  15 Apr 2016; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> setup.py:
 	New Release. 0.0.7
 
-  15 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+  15 Apr 2016; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> flask_dotenv.py,
 	tests/flask_dotenv_test.py, tests/.env:
 	Add export style .env support (thanks diegoponciano)
 
-  07 Apr 2016; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+  07 Apr 2016; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> setup.py:
 	New Release. 0.0.6
 
   20 Feb 2016; Ryan Harvey <ryan.b.harvey@gmail.com> README, flask_dotenv.py,
@@ -34,23 +34,23 @@
 	Updated README to include type casting information.
 	Updated ChangeLog.
 
-  11 Sep 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> README,
+  11 Sep 2015; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README,
 	flask_dotenv.py:
 	Fix typo in README (thanks lozadaOmr)
 	Add equal sign support in value (thanks mawuli)
 
-  15 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py:
+  15 Feb 2015; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> flask_dotenv.py:
 	Fix unuse import :'(
 
-  06 Feb 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> flask_dotenv.py,
+  06 Feb 2015; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> flask_dotenv.py,
 	tests/tests.py, tests/.env, +tests/.env.min, +ChangeLog:
 	New Release.
   Remove os.environ dependency. Add config var alias support. Add verbose_mode.
 
-  29 Jan 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> setup.py:
+  29 Jan 2015; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> setup.py:
 	New Release.
 	Fix packaging issues. Don't use 0.0.1 :'(
 
-  28 Jan 2015; Yasuhiro Asaka <grauwoelfchen@gmail.com> +flask_dotenv.py,
+  28 Jan 2015; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> +flask_dotenv.py,
 	+setup.py, +tests.py, +.env, +README.rst:
 	Initial release.
