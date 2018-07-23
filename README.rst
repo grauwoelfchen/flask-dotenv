@@ -12,8 +12,9 @@ Flask-DotEnv
 |
 
 
-`Flask-DotEnv` will directly set (add, update, map as alias and eval as literal) variable from ``.env`` file,
-and cast to Python native types as appropriate.
+`Flask-DotEnv` will directly set (add, update, map as alias and eval as
+literal) variable from ``.env`` file, and cast to Python native types
+as appropriate.
 
 (optional)
 
@@ -24,11 +25,11 @@ and cast to Python native types as appropriate.
 Repositories
 ------------
 
-My main repository is on GitLab (`.com`).  
-But, also pull request on GitHub is welcome :-D
+| My main repository is on GitLab (`.com`). 
+| But, also pull request on GitHub is welcome :-D
 
-https://gitlab.com/grauwoelfchen/flask-dotenv.git (main)
-https://github.com/grauwoelfchen/flask-dotenv.git
+* https://gitlab.com/grauwoelfchen/flask-dotenv.git (main)
+* https://github.com/grauwoelfchen/flask-dotenv.git
 
 
 
