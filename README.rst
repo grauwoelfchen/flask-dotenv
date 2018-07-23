@@ -52,7 +52,7 @@ DotEnv
 ::
 
     from flask import Flask
-    from flask.ext.dotenv import DotEnv
+    from flask_dotenv import DotEnv
 
     app = Flask(__name__)
     env = DotEnv(app)
