@@ -7,13 +7,12 @@ Flask-DotEnv
 .. image:: https://img.shields.io/pypi/v/Flask-Dotenv.svg
     :target: https://pypi.python.org/pypi/Flask-Dotenv/
 
-| Adds support for .env file to flask style cofig class for applications. 
-| From version ``0.0.3``, set config var without ``os.environ``.
-|
+| Adds support for the ``.env`` file to flask style config class for applications.
+| Version ``0.0.3`` and above support setting config variables without using ``os.environ``.
 
 
-`Flask-DotEnv` will directly set (add, update, map as alias and eval as
-literal) variable from ``.env`` file, and cast to Python native types
+``Flask-DotEnv`` will directly set (add, update, map as alias and eval as
+literal) variables from ``.env`` file, and cast to Python native types
 as appropriate.
 
 (optional)
@@ -26,7 +25,7 @@ Repositories
 ------------
 
 | My main repository is on GitLab (`.com`). 
-| But, also pull request on GitHub is welcome :-D
+| But pull requests on GitHub are also welcome. :-D
 
 * https://gitlab.com/grauwoelfchen/flask-dotenv.git (main)
 * https://github.com/grauwoelfchen/flask-dotenv.git
@@ -82,7 +81,7 @@ Then in your app:
 
 ::
 
-    from config import config
+    from config import Config
 
     app = Flask(__name__)
     app.config.from_object(config[config_name])
@@ -95,14 +94,14 @@ See also:
 Arguments
 **********
 
-You can pass ``.env`` file path as second argument of ``init_app()``.
+You can pass the ``.env`` file path as second argument of ``init_app()``.
 
 ::
 
     env.init_app(app, env_file="/path/to/.env", verbose_mode=True)
 
 | The second argument (``env_file``) is optional. default is ``os.path.join(os.getcwd(), '.env')``.
-| The third argument (``verbose_mode``) is also optional. default ``False``.
+| The third argument (``verbose_mode``) is also optional, defaults to ``False``.
 
 | If ``verbose_mode`` is True, then server outputs nice log message which vars will be set.
 | like this:
@@ -119,7 +118,7 @@ You can pass ``.env`` file path as second argument of ``init_app()``.
 Alias
 **********
 
-``alias()`` method takes a dict argument.
+The ``alias()`` method takes a dict argument.
 
 ::
 
@@ -128,7 +127,7 @@ Alias
       'TEST_HOST': 'HOST'
     })
 
-This is example usage of ``alias``:
+Here's an example if its use:
 
 ::
 
@@ -141,7 +140,8 @@ This is example usage of ``alias``:
             env = DotEnv()
             env.init_app(app)
 
-            # this will set var like a `DEVELOPMENT_DATABASE_URL` as `SQLALCHEMY_DATABASE_URI`
+            # The following will store in `SQLALCHEMY_DATABASE_URI` the value
+            # in, for example, `DEVELOPMENT_DATABASE_URL`
             prefix = self.__name__.replace('Config', '').upper()
             env.alias(maps={
                 prefix + '_DATABASE_URL': 'SQLALCHEMY_DATABASE_URI'
@@ -171,7 +171,7 @@ Eval
       'SETTINGS': dict
     })
 
-This is example usage of ``eval``:
+And here's an example of it's use:
 
 ::
 
@@ -184,7 +184,8 @@ This is example usage of ``eval``:
             env = DotEnv()
             env.init_app(app)
 
-            # this will be evaluated via ast.literal_eval
+            # `MAIL_PORT` will be set the the integer verson of the value found there
+            # using `ast.literal_eval`.
             env.eval(keys={
                 MAIL_PORT: int
             })
