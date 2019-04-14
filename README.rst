@@ -104,7 +104,7 @@ You can pass the ``.env`` file path as a second argument of ``init_app()``.
 | The second argument (``env_file``) is optional, and the default is ``os.path.join(os.getcwd(), '.env')``.
 | The third argument (``verbose_mode``) is also optional, and defaults to ``False``.
 
-| If ``verbose_mode`` is ``True``, then server outputs nice log message showing which vars will be set.
+| If ``verbose_mode`` is ``True``, then server outputs nice log message showing which vars will be set,
 | like this:
 
 ::
@@ -112,7 +112,7 @@ You can pass the ``.env`` file path as a second argument of ``init_app()``.
     * Overwriting an existing config var: SECRET_KEY
     * Setting an entirely new config var: DEVELOPMENT_DATABASE_URL
     * Casting a specified var as literal: MAIL_PORT => <class 'int'>
-    * Mapping a specified var as a alias: DEVELOPMENT_DATABASE_URL -> SQLALCHEMY_DATABASE_URI
+    * Mapping a specified var as an alias: DEVELOPMENT_DATABASE_URL -> SQLALCHEMY_DATABASE_URI
     ...
 
 **********
@@ -129,7 +129,7 @@ while each value is the new alias.
       'TEST_HOST': 'HOST'
     })
 
-Here's an example if its use:
+Here's an example of its use:
 
 ::
 
@@ -199,7 +199,7 @@ And here's an example of its use:
 .env File
 -----------
 
-Following all lines are valid.
+The following lines are all valid.
 
 ::
 
