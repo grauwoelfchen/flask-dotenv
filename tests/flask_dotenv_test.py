@@ -184,7 +184,7 @@ class DotEnvTestCase(unittest.TestCase):
                 'TEST_DATABASE_URL': 'SQLALCHEMY_DATABASE_URL'
             })
         self.assertIn(
-            ' * Mapping a specified var as a alias:'
+            ' * Mapping a specified var as an alias:'
             ' SQLALCHEMY_DATABASE_URL -> TEST_DATABASE_URL\n',
             out
         )
