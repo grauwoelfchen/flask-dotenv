@@ -13,19 +13,19 @@ Flask-DotEnv
 
 
 ``Flask-DotEnv`` will directly set (add, update, map as alias and eval as
-literal) variables from ``.env`` file, and cast to Python native types
+literal) variables from ``.env`` file, and cast them to Python native types
 as appropriate.
 
 (optional)
 
-* ``alias()`` makes alias var
-* ``eval()`` evaluate var to literal (via ast)
+* ``alias()`` makes alias vars
+* ``eval()`` evaluate var to literal (via ``ast``)
 
 
 Repositories
 ------------
 
-| My main repository is on GitLab (`.com`). 
+| My main repository is on GitLab (.com). 
 | But pull requests on GitHub are also welcome. :-D
 
 * https://gitlab.com/grauwoelfchen/flask-dotenv.git (main)
@@ -57,7 +57,7 @@ DotEnv
     app = Flask(__name__)
     env = DotEnv(app)
 
-As factory pattern.
+As a factory pattern.
 
 ::
 
@@ -89,22 +89,22 @@ Then in your app:
 
 See also:
 
-`flask.Config.from_object <http://flask.pocoo.org/docs/0.10/api/#flask.Config.from_object>`_ (API — Flask Documentation)
+`flask.Config.from_object <http://flask.pocoo.org/docs/1.0/api/#flask.Config.from_object>`_ (Flask's API documentation)
 
 **********
 Arguments
 **********
 
-You can pass the ``.env`` file path as second argument of ``init_app()``.
+You can pass the ``.env`` file path as a second argument of ``init_app()``.
 
 ::
 
     env.init_app(app, env_file="/path/to/.env", verbose_mode=True)
 
-| The second argument (``env_file``) is optional. default is ``os.path.join(os.getcwd(), '.env')``.
-| The third argument (``verbose_mode``) is also optional, defaults to ``False``.
+| The second argument (``env_file``) is optional, and the default is ``os.path.join(os.getcwd(), '.env')``.
+| The third argument (``verbose_mode``) is also optional, and defaults to ``False``.
 
-| If ``verbose_mode`` is True, then server outputs nice log message which vars will be set.
+| If ``verbose_mode`` is ``True``, then server outputs nice log message showing which vars will be set.
 | like this:
 
 ::
@@ -119,7 +119,8 @@ You can pass the ``.env`` file path as second argument of ``init_app()``.
 Alias
 **********
 
-The ``alias()`` method takes a dict argument.
+The ``alias()`` method takes a dict argument. Each key is the existing config var,
+while each value is the new alias.
 
 ::
 
@@ -163,7 +164,9 @@ Here's an example if its use:
 Eval
 **********
 
-``eval()`` method takes a dict argument.
+``eval()`` also takes a dict argument. These keys are also the existing config
+var, while the values are the type they should evaluate to. If the type is
+something else, the config var is skipped with a log message shown.
 
 ::
 
@@ -214,7 +217,7 @@ Following all lines are valid.
 Development
 -----------
 
-Run unittest.
+Run the unit tests with:
 
 ::
 
