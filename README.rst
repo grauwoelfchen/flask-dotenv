@@ -225,7 +225,7 @@ Run unittest.
 Link
 ----
 
-Inspired from:
+Inspired by:
 
 * `python-dotenv`_
 * `django-dotenv`_
