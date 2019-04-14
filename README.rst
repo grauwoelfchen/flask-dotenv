@@ -9,6 +9,7 @@ Flask-DotEnv
 
 | Adds support for the ``.env`` file to flask style config class for applications.
 | Version ``0.0.3`` and above support setting config variables without using ``os.environ``.
+|
 
 
 ``Flask-DotEnv`` will directly set (add, update, map as alias and eval as
@@ -171,7 +172,7 @@ Eval
       'SETTINGS': dict
     })
 
-And here's an example of it's use:
+And here's an example of its use:
 
 ::
 
@@ -229,7 +230,7 @@ Inspired from:
 * `python-dotenv`_
 * `django-dotenv`_
 
-See another packages, its also set config vars:
+Other packages that also set configuration variables:
 
 * `Flask-EnvConfig`_
 * `Flask-UserEnvConfig`_
