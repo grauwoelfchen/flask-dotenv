@@ -170,7 +170,7 @@ class DotEnvTestCase(unittest.TestCase):
             self.env.eval(keys={'FEATURES': dict})
 
         self.assertIn(
-            ' * Casting a specified var as literal:'
+            ' * Casting a denoted var as a literal:'
             ' FEATURES => <{0} \'dict\'>\n'
             .format('type' if sys.version_info[0] < 3 else 'class'),
             out
@@ -184,7 +184,7 @@ class DotEnvTestCase(unittest.TestCase):
                 'TEST_DATABASE_URL': 'SQLALCHEMY_DATABASE_URL'
             })
         self.assertIn(
-            ' * Mapping a specified var as an alias:'
+            ' * Making a specified var as an alias:'
             ' SQLALCHEMY_DATABASE_URL -> TEST_DATABASE_URL\n',
             out
         )

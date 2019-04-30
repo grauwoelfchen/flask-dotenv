@@ -111,8 +111,8 @@ You can pass the ``.env`` file path as a second argument of ``init_app()``.
 
     * Overwriting an existing config var: SECRET_KEY
     * Setting an entirely new config var: DEVELOPMENT_DATABASE_URL
-    * Casting a specified var as literal: MAIL_PORT => <class 'int'>
-    * Mapping a specified var as an alias: DEVELOPMENT_DATABASE_URL -> SQLALCHEMY_DATABASE_URI
+    * Casting a denoted var as a literal: MAIL_PORT => <class 'int'>
+    * Making a specified var as an alias: DEVELOPMENT_DATABASE_URL -> SQLALCHEMY_DATABASE_URI
     ...
 
 **********

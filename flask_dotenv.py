@@ -73,7 +73,7 @@ class DotEnv(object):
                     if isinstance(val, v):
                         if self.verbose_mode:
                             print(
-                                " * Casting a specified var as literal:"
+                                " * Casting a denoted var as a literal:"
                                 " {0} => {1}".format(k, v)
                             )
                         self.app.config[k] = val
@@ -98,6 +98,6 @@ class DotEnv(object):
         for k, v in maps.items():  # pylint: disable=invalid-name
             if self.verbose_mode:
                 print(
-                    " * Mapping a specified var as an alias:"
+                    " * Making a specified var as an alias:"
                     " {0} -> {1}".format(v, k))
             self.app.config[v] = self.app.config[k]
