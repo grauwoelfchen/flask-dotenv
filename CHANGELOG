@@ -3,6 +3,7 @@
   01 May 2019; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README.rst,
 	flask_dotenv.py, tests/flask_dotenv_test.py:
 	Update log message
+	New Release. 0.1.2
 
   01 May 2019; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README.rst,
 	LICENSE, flask_dotenv.py, tests/flask_dotenv_test.py:
