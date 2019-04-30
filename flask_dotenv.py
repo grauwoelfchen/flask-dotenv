@@ -98,6 +98,6 @@ class DotEnv(object):
         for k, v in maps.items():  # pylint: disable=invalid-name
             if self.verbose_mode:
                 print(
-                    " * Mapping a specified var as a alias:"
+                    " * Mapping a specified var as an alias:"
                     " {0} -> {1}".format(v, k))
             self.app.config[v] = self.app.config[k]
