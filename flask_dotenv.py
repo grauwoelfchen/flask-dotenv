@@ -1,7 +1,7 @@
 """
-FLask-DotEnv
+Flask-DotEnv
 
-:copyright: (c) 2015-2017 by Yasuhiro Asaka.
+:copyright: (c) 2015-2019 Yasuhiro Asaka.
 :license: BSD 2-Clause License
 """
 
