@@ -14,7 +14,7 @@ setup(
     url='https://github.com/grauwoelfchen/flask-dotenv/',
     license='BSD',
     author='Yasuhiro Asaka',
-    author_email='grauwoelfchen@gmail.com',
+    author_email='yasuhiro.asaka@grauwoelfchen.net',
     description='The .env file support for Flask',
     long_description=__doc__,
     py_modules=['flask_dotenv'],
