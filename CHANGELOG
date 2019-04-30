@@ -1,5 +1,9 @@
 # ChangeLog for Flask-DotEnv
 
+  01 May 2019; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README.rst,
+	LICENSE, flask_dotenv.py, tests/flask_dotenv_test.py:
+	Increase in English readability (thanks chivalry)
+
   23 Jul 2018; Yasuhiro Asaka <yasuhiro.asaka@grauwoelfchen.net> README.rst:
 	Fix import example import (thanks lanshark82)
 	Fix typo in README (thanks spankie)
