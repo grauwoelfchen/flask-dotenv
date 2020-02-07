@@ -15,11 +15,17 @@ import warnings
 class DotEnv(object):
     """The .env file support for Flask."""
 
-    def __init__(self, app=None):
+    def __init__(self, app=None, env_file=None, verbose_mode=False):
+        """Initialise DotEnv class
+
+        :param app: Flask application.
+        :param env_file: (str) Path to .env file.
+        :param verbose_mode: (bool) configure class's output.
+        """
         self.app = app
-        self.verbose_mode = False
+        self.verbose_mode = verbose_mode
         if app is not None:
-            self.init_app(app)
+            self.init_app(app, env_file, verbose_mode)
 
     def init_app(self, app, env_file=None, verbose_mode=False):
         """Imports .env file."""
