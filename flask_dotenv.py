@@ -36,16 +36,18 @@ class DotEnv(object):
 
     def __import_vars(self, env_file):
         """Actual importing function."""
-        with open(env_file, "r") as f:  # pylint: disable=invalid-name
+        # pylint: disable=invalid-name
+        with open(env_file, "r") as f:
             for line in f:
                 try:
-                    line = line.lstrip()
-                    if line.startswith('export'):
-                        line = line.replace('export', '', 1)
-                    key, val = line.strip().split('=', 1)
+                    t = line.strip()
+                    if t.startswith('export'):
+                        t = t.replace('export', '', 1)
+                    k, v = t.lstrip().split('=', 1)
                 except ValueError:  # Take care of blank or comment lines
                     pass
                 else:
+                    key, val = k.rstrip(), v.lstrip() # Remove extra spaces
                     if not callable(val):
                         if self.verbose_mode:
                             if key in self.app.config:

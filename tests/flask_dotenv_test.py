@@ -46,7 +46,8 @@ class DotEnvTestCase(unittest.TestCase):
             'DATABASE_URL',
             'BAR',
             'FEATURES',
-            'PORT_NUMBER'
+            'PORT_NUMBER',
+            'BAZ',
         ]
         for key in config_keys:
             if key in self.app.config:
@@ -71,6 +72,10 @@ class DotEnvTestCase(unittest.TestCase):
         root_dir = os.path.dirname(os.path.abspath(__file__))
         self.env.init_app(self.app, os.path.join(root_dir, '.env.min'))
         self.assertTrue('BAR' in self.app.config)
+
+    def test_take_value_even_if_extra_spaces_are_given_around_equal(self):
+        self.env.init_app(self.app)
+        self.assertEqual('baz', self.app.config['BAZ'])
 
     def test_loaded_value_does_not_contain_double_quote(self):
         self.env.init_app(self.app)
@@ -100,6 +105,10 @@ class DotEnvTestCase(unittest.TestCase):
         self.assertEqual(
             'postgresql://user:password@localhost/production?sslmode=require',
             self.app.config['DATABASE_URL'])
+
+    def test_loaded_value_can_contain_spaces(self):
+        self.env.init_app(self.app)
+        self.assertEqual('qux quux', self.app.config['QUX'])
 
     def test_overwrite_an_existing_config_var(self):
         # flask has secret_key in default

@@ -205,6 +205,7 @@ The following lines are all valid.
 
     SECRET_KEY="123"
     USERNAME=john
+    PASSWORD = 'secret'
     DATABASE_URL='postgresql://user:password@localhost/production?sslmode=require'
     FEATURES={'DotEnv': True}
     # comment and blank lines are also supported
